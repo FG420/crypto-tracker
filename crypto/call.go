@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/FG420/crypto-tracker/types"
 )
@@ -35,6 +36,42 @@ func CallApi(coinName string) {
 		return
 	}
 
-	log.Print(coin)
+	time := time.Unix(coin.Data.Time, 0)
+
+	log.Printf("\n                RESULT"+
+		"\n____________________________________"+
+		"\n- Searched Coin: %s"+
+		"\n- Average Price: %s"+
+		"\n- Last: %s"+
+		"\n- Buy: %s"+
+		"\n- Sell: %s"+
+		"\n- High: %s"+
+		"\n- Low: %s"+
+		"\n- Taker Fee Rate: %s"+
+		"\n- Taker Coefficent: %s"+
+		"\n- Maker Fee Rate: %s"+
+		"\n- Maker Coefficent: %s"+
+		"\n- Change Rate: %s"+
+		"\n- Change Price: %s"+
+		"\n- Volume: %s"+
+		"\n- Volume Value: %s"+
+		"\n- Time: %s"+
+		"\n____________________________________",
+		coin.Data.Symbol,
+		coin.Data.AveragePrice,
+		coin.Data.Last,
+		coin.Data.Buy,
+		coin.Data.Sell,
+		coin.Data.High,
+		coin.Data.Low,
+		coin.Data.TakerFeeRate,
+		coin.Data.TakerCoefficient,
+		coin.Data.MakerFeeRate,
+		coin.Data.MakerCoefficient,
+		coin.Data.ChangeRate,
+		coin.Data.ChangePrice,
+		coin.Data.Vol,
+		coin.Data.VolValue,
+		time)
 
 }

@@ -5,44 +5,36 @@ import (
 	"io"
 	"log"
 	"net/http"
-)
 
-type Coin struct {
-	Name        string
-	Buy         string
-	Sell        string
-	ChangeRate  string
-	ChangePrice string
-	High        string
-	Low         string
-}
+	"github.com/FG420/crypto-tracker/types"
+)
 
 var (
 	baseApi  = "https://api.kucoin.com/api/v1/market/stats?symbol="
 	baseApi2 = "-USDT"
 )
 
-func CallApi(coin string) {
-	apiUrl := baseApi + coin + baseApi2
+func CallApi(coinName string) {
+	apiUrl := baseApi + coinName + baseApi2
 	res, err := http.Get(apiUrl)
 	if err != nil {
-		log.Printf("Error during API call for %s: %v", coin, err)
+		log.Printf("Error during API call for %s: %v", coinName, err)
 		return
 	}
 
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
-		log.Printf("Error during body reading for %s: %v", coin, err)
+		log.Printf("Error during body reading for %s: %v", coinName, err)
 		res.Body.Close()
 		return
 	}
 
-	var result map[string]interface{}
-	if err := json.Unmarshal(body, &result); err != nil {
-		log.Printf("Error during unmarshal result for %s: %v", coin, err)
+	var coin types.Coin
+	if err := json.Unmarshal(body, &coin); err != nil {
+		log.Printf("Error during unmarshal result for %s: %v", coinName, err)
 		return
 	}
 
-	data, _ := json.Marshal(result)
-	log.Printf("The data is: %s", data)
+	log.Print(coin)
+
 }

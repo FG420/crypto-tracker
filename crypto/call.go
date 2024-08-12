@@ -15,39 +15,35 @@ var (
 	baseApi2 = "-USDT"
 )
 
-func callApi(coinName string) (*types.Coin, error) {
+func CallApi(coinName string) *types.Coin {
 	apiUrl := baseApi + coinName + baseApi2
 	res, err := http.Get(apiUrl)
 	if err != nil {
-		log.Printf("Error during API call for %s: %v", coinName, err)
-		return nil, err
+		log.Panicf("Error during API call for %s: %v", coinName, err)
+
 	}
 
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
-		log.Printf("Error during body reading for %s: %v", coinName, err)
+		log.Panicf("Error during body reading for %s: %v", coinName, err)
 		res.Body.Close()
-		return nil, err
 	}
 
 	var coin types.Coin
 	if err := json.Unmarshal(body, &coin); err != nil {
-		log.Printf("Error during unmarshal result for %s: %v", coinName, err)
-		return nil, err
+		log.Panicf("Error during unmarshal result for %s: %v", coinName, err)
 	}
 
 	if coin.Data.Buy == "" {
-		panic("Error! The data for this crypto coin is not possible to retrive because the coin doesn't exist!")
+		log.Panic("Error! The data for this crypto coin is not possible to retrive because the coin doesn't exist!")
+
 	}
 
-	return &coin, err
+	return &coin
 }
 
 func GetData(coinName string) {
-	coin, err := callApi(coinName)
-	if err != nil {
-		log.Print("Something went wrong!")
-	}
+	coin := CallApi(coinName)
 
 	time := time.Unix(coin.Data.Time, 0)
 

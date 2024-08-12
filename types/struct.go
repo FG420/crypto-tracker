@@ -21,3 +21,7 @@ type Coin struct {
 		MakerCoefficient string `json:"makerCoefficient"`
 	} `json:"data"`
 }
+
+type Coins struct {
+	Names []string `json:"names"`
+}

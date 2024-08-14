@@ -12,8 +12,6 @@ Installation
 Prerequisites
 Go 1.18 or later
 A working internet connection (for fetching cryptocurrency data)
-
-
 Clone the Repository
 git clone https://github.com/FG420/crypto-tracker.git
 cd crypto-tracker
@@ -21,6 +19,7 @@ cd crypto-tracker
 Install Dependencies
 This project relies on a few Go packages. You can install them by running:
 go mod tidy
+
 
 Usage
 Running the Application
@@ -36,19 +35,15 @@ Insert a new cryptocurrency to follow in the file: Add a new cryptocurrency to t
 Delete the inputted cryptocurrency from the file: Remove a cryptocurrency from the tracking list.
 Print in a new JSON file the current stock market for all the cryptos saved in the JSON file: Export the current market data for all tracked cryptocurrencies to a crypto-stock.json file.
 Exit: Close the application.
-
 Example Workflow
 Select option [2] to add a new cryptocurrency to the list (e.g., BTC).
-Select option [1] to start following a crypto currency in real-time.
+Select option [1] to start following BTC in real-time.
 Press Backspace to stop following the market data.
 Select option [4] to export the current market data of all tracked cryptocurrencies to a JSON file.
-
 Managing Cryptocurrencies
 Cryptocurrencies are stored in a coins.json file, which is automatically created when the application is first run.
 To view or manage this list, use options [2] or [3] from the menu.
 File Structure
-plaintext
-Copia codice
 .
 ├── main.go               # Entry point of the application
 ├── crypto/               # Package for handling API calls and data fetching
@@ -58,3 +53,12 @@ Copia codice
 
 Contributing
 Contributions are welcome! Feel free to open issues or submit pull requests to improve the project.
+
+How to Contribute
+Fork the repository.
+Create a new branch (git checkout -b feature-branch).
+Commit your changes (git commit -am 'Add new feature').
+Push to the branch (git push origin feature-branch).
+Create a new Pull Request.
+License
+This project is licensed under the MIT License - see the LICENSE file for details.

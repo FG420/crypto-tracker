@@ -61,15 +61,3 @@ Cryptocurrencies' information is stored in a `coins.json` file, created automati
 └── crypto-stock.json     # (Optional) JSON file containing the exported market data
 ```
 
-## Contributing
-Contributions are encouraged! Please feel free to open issues or submit pull requests to enhance the project.
-
-### How to Contribute
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature-branch`)
-3. Commit your changes (`git commit -am 'Add new feature'`)
-4. Push to the branch (`git push origin feature-branch`)
-5. Create a new Pull Request
-
-## License
-This project is licensed under the MIT License - see the `LICENSE` file for details.
